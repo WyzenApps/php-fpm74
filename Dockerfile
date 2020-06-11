@@ -25,4 +25,4 @@ COPY ./ini/php-ini-overrides.ini /etc/php/7.4/fpm/conf.d/99-overrides.ini
 EXPOSE 9000
 VOLUME [ $APPDIR ]
 WORKDIR $APPDIR
-USER 33:33
+# USER 33:33
