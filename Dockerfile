@@ -10,15 +10,19 @@ ENV LC_ALL=fr_FR.UTF-8
 
 # Install selected extensions and other stuff
 RUN apt-get update \
-    && apt-get -y --no-install-recommends install curl wget git sudo locales \
+    && apt-get -y --no-install-recommends install curl wget git sudo cron locales \
     && locale-gen $LOCALE && update-locale \
-    && usermod -u 33 www-data && groupmod -g 33 www-data \
+    && usermod -u 33 -d $APPDIR www-data && groupmod -g 33 www-data \
     && mkdir -p $APPDIR && chown www-data:www-data $APPDIR
 
 RUN apt-get update \
-    && apt-get -y --no-install-recommends install php-memcached php7.4-mysql php-pgsql php7.4-sqlite3 php7.4-intl php-gd php-mbstring php-yaml php-curl php-json php-redis composer
+    && apt-get -y --no-install-recommends install php-memcached php7.4-cli php7.4-common php7.4-curl php7.4-intl php7.4-json php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-readline php7.4-sqlite3 php7.4-xml php7.4-zip php-pgsql php7.4-gd php7.4-yaml php7.4-redis composer
+#    && apt-get -y --no-install-recommends install php-memcached php7.4-mysql php-pgsql php7.4-sqlite3 php7.4-intl php7.4-gd php-mbstring php-yaml php-curl php-json php-redis composer
 
 RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+# Run cron
+RUN service cron start
 
 COPY ./ini/php-ini-overrides.ini /etc/php/7.4/fpm/conf.d/99-overrides.ini
 
