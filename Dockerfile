@@ -16,7 +16,7 @@ RUN apt-get update \
     && mkdir -p $APPDIR && chown www-data:www-data $APPDIR
 
 RUN apt-get update \
-    && apt-get -y --no-install-recommends install php-memcached php7.4-cli php7.4-common php7.4-curl php7.4-intl php7.4-json php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-readline php7.4-sqlite3 php7.4-xml php7.4-zip php-pgsql php7.4-gd php7.4-yaml php7.4-redis \
+    && apt-get -y --no-install-recommends install php-memcached php7.4-cli php7.4-common php7.4-curl php7.4-intl php7.4-json php7.4-mbstring php7.4-mysql php7.4-opcache php7.4-readline php7.4-sqlite3 php7.4-xml php7.4-zip php7.4-pgsql php7.4-gd php7.4-yaml php7.4-redis \
 && cd /tmp \
 && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 && php composer-setup.php \
