@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+. config.docker
 
-TAG=${1:-"php-fpm74"}
+TAG=${TAG:-"latest"}
 
-docker build -f Dockerfile --tag ${TAG}:latest .
-
+docker build --rm -f Dockerfile --tag "${VENDOR}/${IMAGE}:${TAG}" .

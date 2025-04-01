@@ -1,0 +1,4 @@
+VENDOR=wyzengroup
+IMAGE=php-fpm74
+TAG=latest
+SHELL=sh
